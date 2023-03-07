@@ -1,0 +1,10 @@
+.container {
+    width: 300px;
+    height: 400px;
+    border: 2px solid black;
+}
+.screen {
+    width: 250px;
+    height: 100px;
+    border: 1px solid black;
+}
