@@ -11,10 +11,10 @@
     margin-top: 10px;
     margin-left: 20px;
 }
-.upper {
+#upper {
     font-size: 24px;
 }
-.lower { 
+#lower { 
     font-size: 36px;
 }
 .buttons {
