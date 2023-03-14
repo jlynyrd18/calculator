@@ -20,3 +20,14 @@ squares.forEach(function(square) {
         lowerNum.innerHTML = lowerArr.join("");
     });
 });
+
+let operators = document.querySelectorAll(".operator");
+operators.forEach(function(operator) {
+    operator.addEventListener("click", function() {
+        let operatorValue = this.innerHTML;
+        if (operatorValue !== "=") {
+            upperArr.push(lowerArr.slice());
+            lowerArr.length = 0;
+        }
+    });
+});
