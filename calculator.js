@@ -3,7 +3,12 @@ clearButton.addEventListener("click", function() {
     lowerArr.length = 0;
     upperArr.length = 0;
     lowerNum.innerHTML = "";
-})
+});
+let backspaceButton = document.querySelector(".backspace");
+backspaceButton.addEventListener("click", function() {
+    lowerArr.pop();
+    lowerNum.innerHTML = lowerArr.join("");
+});
 
 const upperNum = document.getElementById("upper");
 
