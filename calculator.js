@@ -1,4 +1,9 @@
-//functions for each operator +,-,*, and /
+let clearButton = document.getElementById("clear");
+clearButton.addEventListener("click", function() {
+    lowerArr.length = 0;
+    upperArr.length = 0;
+    lowerNum.innerHTML = "";
+})
 
 const upperNum = document.getElementById("upper");
 
