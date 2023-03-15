@@ -1,9 +1,10 @@
-let clearButton = document.getElementById("clear");
+let clearButton = document.getElementById("clearButton");
 clearButton.addEventListener("click", function() {
     lowerArr.length = 0;
     upperArr.length = 0;
-    lowerNum.innerHTML = "";
-});
+    lowerNum.innerHTML = "0";
+    upperNum.innerHTML = "0";
+})
 let backspaceButton = document.querySelector(".backspace");
 backspaceButton.addEventListener("click", function() {
     lowerArr.pop();
@@ -36,7 +37,8 @@ operators.forEach(function(operator) {
     operator.addEventListener("click", function() {
         let operatorValue = this.innerHTML;
         if (operatorValue !== "=") {
-            upperArr.push(lowerArr.slice());
+            upperArr.push(lowerArr.join(""));           
+            upperNum.innerHTML = upperArr.join("");
             lowerArr.length = 0;
         }
     });
