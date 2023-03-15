@@ -11,10 +11,6 @@ backspaceButton.addEventListener("click", function() {
     lowerNum.innerHTML = lowerArr.join("");
 });
 
-const upperNum = document.getElementById("upper");
-
-const upperArr = [];
-
 
 //add event listener to each square?
 //can a fucntion have all operators in if statements so no need for multiple functions?
@@ -23,12 +19,19 @@ const upperArr = [];
 
 let squares = document.querySelectorAll(".square");
 const lowerArr = [];
+const upperArr = [];
 const lowerNum = document.getElementById("lower");
+const upperNum = document.getElementById("upper");
 squares.forEach(function(square) {
     square.addEventListener('click', function() {
-        let squareValue = this.innerHTML;
-        lowerArr.push(squareValue);
-        lowerNum.innerHTML = lowerArr.join("");
+        if(this.innerHTML !== "="){
+            let squareValue = this.innerHTML;
+            lowerArr.push(squareValue);
+            lowerNum.innerHTML = lowerArr.join("");
+        }else {
+            operators();
+        }
+
     });
 });
 
@@ -40,6 +43,15 @@ operators.forEach(function(operator) {
             upperArr.push(lowerArr.join(""));           
             upperNum.innerHTML = upperArr.join("");
             lowerArr.length = 0;
+        }else if (operatorValue == "=") {
+            let upperNumber = upperArr.slice(0, -1);
+            let num1 = Number(lowerArr.join(""));
+            let num2 = Number(upperArr.join(""));
+            let upperOp = upperArr.pop();
+            if (upperOp == "+") {
+                let sum = num1 + num2;
+                lowerNum.innerHTML = sum;
+            }
         }
     });
 });
