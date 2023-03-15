@@ -28,8 +28,8 @@ squares.forEach(function(square) {
             let squareValue = this.innerHTML;
             lowerArr.push(squareValue);
             lowerNum.innerHTML = lowerArr.join("");
-        }else {
-            operators();
+        }else if (this.innerHTML == "=") {
+            performCalculation();
         }
 
     });
@@ -43,15 +43,29 @@ operators.forEach(function(operator) {
             upperArr.push(lowerArr.join(""));           
             upperNum.innerHTML = upperArr.join("");
             lowerArr.length = 0;
-        }else if (operatorValue == "=") {
-            let upperNumber = upperArr.slice(0, -1);
-            let num1 = Number(lowerArr.join(""));
-            let num2 = Number(upperArr.join(""));
-            let upperOp = upperArr.pop();
-            if (upperOp == "+") {
-                let sum = num1 + num2;
-                lowerNum.innerHTML = sum;
-            }
         }
     });
 });
+
+function performCalculation() {
+    let sum = 0;
+    let upperNumber = upperArr.slice(0, -1);
+    let num1 = Number(lowerArr.join(""));
+    let num2 = Number(upperNumber.join(""));
+    let upperOp = upperArr.pop();
+    if(upperOp == "+") {
+        sum = num1+num2;
+    }else if (upperOp == "-") {
+        sum = num1-num2;
+    }else if (upperOp == "*") {
+        sum = num1*num2;
+    }else if (upperOp == "/" && num2 == 0){
+        alert("You can not divide by zero.");
+        return "Error";
+    }else if (upperOp == "/") {
+        sum = num1/num2;
+    }else if (upperOp == NaN) {
+        alert("You need an operator.");
+    }
+    lowerArr = sum.split("");
+}
