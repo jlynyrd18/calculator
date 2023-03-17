@@ -22,55 +22,25 @@ const lowerArr = [];
 const upperArr = [];
 const lowerNum = document.getElementById("lower");
 const upperNum = document.getElementById("upper");
-let operators = document.querySelectorAll(".operator");
+let operators = ["+", "-", "*", "/"];
 squares.forEach(function(square) {
     square.addEventListener('click', function() {
         if(!isNaN(this.innerHTML) || this.innerHTML === "."){
             let squareValue = this.innerHTML;
             lowerArr.push(squareValue);
             lowerNum.innerHTML = lowerArr.join("");
-        }else if (operators.includes(this.innerHTML) && this.innerHTML !== "=") {
+        }else if (operators.includes(this.innerHTML)) {
+            lowerArr.push(this.innerHTML);
             upperArr.push(lowerArr.join(""));
             upperNum.innerHTML = upperArr.join("");
             lowerArr.length = 0;
         }else if (this.innerHTML == "=") {
-            
             performCalculation();
         }
 
     });
 });
-/*
-operators.forEach(function(operator) {
-    operator.addEventListener("click", function() {
-        let operatorValue = this.innerHTML;
-        if (operatorValue !== "=") {
-            upperArr.push(lowerArr.join(""));           
-            upperNum.innerHTML = upperArr.join("");
-            lowerArr.length = 0;
-        }
-    });
-});
-*/
 function performCalculation() {
     let sum = 0;
-    let upperNumber = upperArr.slice(0, -1);
-    let num1 = Number(lowerArr.join(""));
-    let num2 = Number(upperNumber.join(""));
-    let upperOp = upperArr.pop();
-    if(upperOp == "+") {
-        sum = num1+num2;
-    }else if (upperOp == "-") {
-        sum = num1-num2;
-    }else if (upperOp == "*") {
-        sum = num1*num2;
-    }else if (upperOp == "/" && num2 == 0){
-        alert("You can not divide by zero.");
-        return "Error";
-    }else if (upperOp == "/") {
-        sum = num1/num2;
-    }else if (upperOp == NaN) {
-        alert("You need an operator.");
-    }
-    lowerNum.innerHTML = sum;
+    
 }
