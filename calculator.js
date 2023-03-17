@@ -23,6 +23,7 @@ const upperArr = [];
 const lowerNum = document.getElementById("lower");
 const upperNum = document.getElementById("upper");
 let operators = ["+", "-", "*", "/"];
+let equal = ["="];
 squares.forEach(function(square) {
     square.addEventListener('click', function() {
         if(!isNaN(this.innerHTML) || this.innerHTML === "."){
@@ -35,12 +36,38 @@ squares.forEach(function(square) {
             upperNum.innerHTML = upperArr.join("");
             lowerArr.length = 0;
         }else if (this.innerHTML == "=") {
-            performCalculation();
+            console.log(performCalculation());
         }
 
     });
 });
+
+//function that gets the operator and does that operation and returns the sum
 function performCalculation() {
-    let sum = 0;
-    
+    //have return statement after each if statment
+    let operator = upperArr.pop();
+    let firstNum = upperArr.slice(0, -1);
+    let num1 = Number(firstNum.join(""));
+    let num2 = Number(lowerArr.join(""));
+
+    if (operator == "+") {
+        let sum = num1 + num2;
+    } else if (operator == "-") {
+        let sum = num1 - num2;
+    } else if (operator == "*") {
+        let sum = num1 * num2;
+    } else if (operator == "/" && num2 == 0) {
+        alert("You can not divide by zero.");
+        return "Error";
+    } else if (operator == "/") {
+        let sum = num1 / num2;
+    }
+    return sum;
+    console.log(sum);
+    upperArr.push(operator, num2);
+    upperNum.innerHTML = upperArr.join("");
+    lowerArr.length = 0;
+    lowerArr.push(sum);
+    lowerNum.innerHTML = lowerArr.join("");
+
 }
