@@ -22,20 +22,25 @@ const lowerArr = [];
 const upperArr = [];
 const lowerNum = document.getElementById("lower");
 const upperNum = document.getElementById("upper");
+let operators = document.querySelectorAll(".operator");
 squares.forEach(function(square) {
     square.addEventListener('click', function() {
-        if(this.innerHTML !== "="){
+        if(!isNaN(this.innerHTML) || this.innerHTML === "."){
             let squareValue = this.innerHTML;
             lowerArr.push(squareValue);
             lowerNum.innerHTML = lowerArr.join("");
+        }else if (operators.includes(this.innerHTML) && this.innerHTML !== "=") {
+            upperArr.push(lowerArr.join(""));
+            upperNum.innerHTML = upperArr.join("");
+            lowerArr.length = 0;
         }else if (this.innerHTML == "=") {
+            
             performCalculation();
         }
 
     });
 });
-
-let operators = document.querySelectorAll(".operator");
+/*
 operators.forEach(function(operator) {
     operator.addEventListener("click", function() {
         let operatorValue = this.innerHTML;
@@ -46,7 +51,7 @@ operators.forEach(function(operator) {
         }
     });
 });
-
+*/
 function performCalculation() {
     let sum = 0;
     let upperNumber = upperArr.slice(0, -1);
@@ -67,5 +72,5 @@ function performCalculation() {
     }else if (upperOp == NaN) {
         alert("You need an operator.");
     }
-    lowerArr = sum.split("");
+    lowerNum.innerHTML = sum;
 }
