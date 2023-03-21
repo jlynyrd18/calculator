@@ -34,10 +34,10 @@ squares.forEach(square => {
             const value = square.textContent;
             if (value !== "=" && upperArr.length == 0) {
                 lowerArr.push(value);
-                upperArr.push(lowerArr.join(""));
-                upperNum.textContent = upperArr.join("");
+                upperArr.push(lowerArr.join(" "));
+                upperNum.textContent = upperArr.join(" ");
                 lowerArr.length = 0;
-                lowerNum.textContent = lowerArr.join("");
+                lowerNum.textContent = lowerArr.join(" ");
             }else if (value !== "=" && upperArr.length !== 0) {
                 //need to convert upperArr to array so to seperate 2 and operator and pop off to get operator
                 const num1 = parseFloat(upperArr.join(""));
