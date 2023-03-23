@@ -28,16 +28,16 @@ squares.forEach(function(square) {
         //add if statment if upper and lower arrays are not 0 to clear them out?
         if (value !== "=" && square.classList.contains("number")) {
             lowerArr.push(value);
-            lowerNum.textContent = lowerArr.join(" ");
+            lowerNum.textContent = lowerArr.join("");
         }else if (value !== "=" && square.classList.contains("operator")) {
             lowerArr.push(value);
-            upperArr.push(lowerArr.join(" "));
-            upperNum.textContent = upperArr.join(" ");
+            upperArr.push(lowerArr.join(""));
+            upperNum.textContent = upperArr.join("");
             lowerArr.length = 0;  
         }else if (value == "=") {
             let operator = upperArr.toString().slice(-1);
             let num1 = Number.parseFloat(upperArr);
-            let num2 = Number.parseFloat(lowerArr);
+            let num2 = Number.parseInt(lowerArr.join(""));
             switch(operator) {
                 case "+": 
                     x = num1 + num2;
