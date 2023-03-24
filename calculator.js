@@ -27,8 +27,16 @@ squares.forEach(function(square) {
         const value = square.textContent;
         //add if statment if upper and lower arrays are not 0 to clear them out?
         if (value !== "=" && square.classList.contains("number")) {
-            lowerArr.push(value);
-            lowerNum.textContent = lowerArr.join("");
+            if(upperArr.toString().slice(-1) == "=") {
+                upperArr.length = 0;
+                lowerArr.length = 0;
+                lowerArr.push(value);
+                lowerNum.textContent = lowerArr.join("");
+            }else {
+                lowerArr.push(value);
+                lowerNum.textContent = lowerArr.join("");
+            }
+            
         }else if (value !== "=" && square.classList.contains("operator")) {
             if (upperArr.length == 0) {
                 lowerArr.push(value);
