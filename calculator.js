@@ -30,10 +30,44 @@ squares.forEach(function(square) {
             lowerArr.push(value);
             lowerNum.textContent = lowerArr.join("");
         }else if (value !== "=" && square.classList.contains("operator")) {
-            lowerArr.push(value);
-            upperArr.push(lowerArr.join(""));
-            upperNum.textContent = upperArr.join("");
-            lowerArr.length = 0;  
+            if (upperArr.length == 0) {
+                lowerArr.push(value);
+                upperArr.push(lowerArr.join(""));
+                upperNum.textContent = upperArr.join("");
+                lowerArr.length = 0; 
+            }else if (upperArr.length !== 0) {
+                let operator = upperArr.toString().slice(-1);
+                let num1 = Number.parseFloat(upperArr);
+                let num2 = Number.parseInt(lowerArr.join(""));
+                switch (operator) {
+                    case "+": 
+                    x = num1 + num2;
+                    break;
+                case "-": 
+                    x = num1 - num2;
+                    break;
+                case "*": 
+                    x = num1 * num2;
+                    break;
+                case "/": 
+                    if(num2 ==0) {
+                        alert("You can not divide by zero");
+                    }else {
+                        x = num1 / num2;
+                    }
+                    
+                    break;
+                default:
+                    alert("No operator selected");
+                }
+                //want to push x and value to upper array?
+                upperArr.length = 0;
+                upperArr.push(x);
+                upperArr.push(value);
+                upperNum.textContent = upperArr.join("");
+                lowerArr.length = 0;
+            }
+   
         }else if (value == "=") {
             let operator = upperArr.toString().slice(-1);
             let num1 = Number.parseFloat(upperArr);
@@ -49,12 +83,18 @@ squares.forEach(function(square) {
                     x = num1 * num2;
                     break;
                 case "/": 
-                    x = num1 / num2;
+                    if(num2 == 0) {
+                        alert("You can not divide by zero");
+                    }else {
+                        x = num1 / num2;
+                    }
+                    
                     break;
                 default:
                     alert("No operator selected");
             }
             upperArr.push(lowerArr.join(""));
+            upperArr.push(value);
             upperNum.textContent = upperArr.join("");
             lowerArr.length = 0;
             lowerArr.push(x);
