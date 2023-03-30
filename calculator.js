@@ -39,7 +39,11 @@ squares.forEach(function(square) {
             
         }else if (value !== "=" && square.classList.contains("operator")) {
             //where to put if statmenent if upperArr ends with = and an operator is clicked to continue with that number
-            if (upperArr.length == 0) {
+            if (upperArr.toString().slice(-1) === "=") {
+                upperArr.length = 0;
+
+            }
+            else if (upperArr.length == 0) {
                 lowerArr.push(value);
                 upperArr.push(lowerArr.join(""));
                 upperNum.textContent = upperArr.join("");
